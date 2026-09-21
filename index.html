@@ -146,12 +146,6 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-1.5 flex-shrink-0">
-                        <!-- Direct Link Button -->
-                        <button onclick="openWhatsApp('8619925787935')" 
-                           class="p-2 text-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex items-center justify-center transition-all active:scale-95 shadow-sm"
-                           title="Chat on WhatsApp">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
                         <!-- Copy Button -->
                         <button onclick="copyToClipboard('+8619925787935', 'WhatsApp Number')" 
                                 class="p-2 text-xs bg-amberGold-500/15 hover:bg-amberGold-500/25 text-amberGold-700 rounded-lg flex items-center justify-center transition-all active:scale-95 border border-amberGold-500/30"
@@ -226,12 +220,12 @@
             </div>
         </div>
 
-        <!-- Quick Direct Contact Button -->
+        <!-- Quick Copy Number Button -->
         <div class="pt-2">
-            <button onclick="openWhatsApp('8619925787935')" 
+            <button onclick="copyToClipboard('+8619925787935', 'WhatsApp Number')" 
                class="btn-glow w-full py-3.5 px-4 bg-gradient-to-r from-amberGold-500 via-amberGold-600 to-amberGold-700 hover:from-amberGold-600 hover:to-amberGold-700 text-white font-medium rounded-xl flex items-center justify-center space-x-2 text-sm shadow-md transition-all">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>Direct WhatsApp Contact</span>
+                <i class="fa-regular fa-copy text-lg"></i>
+                <span>Copy WhatsApp Number</span>
             </button>
         </div>
 
@@ -254,22 +248,6 @@
     </div>
 
     <script>
-        /**
-         * Enhanced WhatsApp Launcher for Mobile App WebViews
-         */
-        function openWhatsApp(phone) {
-            const apiUrl = `https://api.whatsapp.com/send?phone=${phone}`;
-            const schemeUrl = `whatsapp://send?phone=${phone}`;
-            
-            // Try scheme first for app webviews
-            window.location.href = schemeUrl;
-            
-            // Fallback to HTTPS API
-            setTimeout(() => {
-                window.location.href = apiUrl;
-            }, 300);
-        }
-
         /**
          * Copy text to clipboard and display toast notification
          */
