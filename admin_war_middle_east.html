@@ -8,12 +8,12 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Cairo & Reem Kufi for Arabic Typography -->
+    <!-- Google Fonts: Cairo & Reem Kufi -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -58,7 +58,6 @@
             touch-action: manipulation;
         }
 
-        /* Particle Canvas Ambient Glow */
         #particleCanvas {
             position: fixed;
             top: 0;
@@ -69,32 +68,23 @@
             z-index: 1;
         }
 
-        /* Castle Backdrop & Torches Animation */
         .gothic-bg {
-            background: linear-gradient(180deg, rgba(5,4,7,0.75) 0%, rgba(17,13,24,0.95) 100%),
+            background: linear-gradient(180deg, rgba(5,4,7,0.8) 0%, rgba(17,13,24,0.95) 100%),
                         radial-gradient(circle at 50% 20%, rgba(189, 21, 34, 0.25) 0%, transparent 70%);
         }
 
-        /* Torch Flame Effect */
         .flame {
-            width: 14px;
-            height: 28px;
+            width: 12px;
+            height: 24px;
             background: radial-gradient(ellipse at bottom, #ffee55 0%, #ff8800 50%, rgba(255,0,0,0) 100%);
             border-radius: 50% 50% 20% 20%;
             animation: flicker 0.15s infinite alternate ease-in-out;
-            filter: drop-shadow(0 0 10px #ff6600);
+            filter: drop-shadow(0 0 8px #ff6600);
         }
 
         @keyframes flicker {
             0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
             100% { transform: scale(1.15) rotate(2deg); opacity: 1; }
-        }
-
-        /* Gold Gradient Borders & Glows */
-        .gold-border-glow {
-            border: 2px solid;
-            border-image: linear-gradient(135deg, #FFE27D 0%, #D4AF37 50%, #8B6508 100%) 1;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
         }
 
         .gold-text-glow {
@@ -104,7 +94,6 @@
             text-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
         }
 
-        /* Tab Transition Animation */
         .tab-btn {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -116,7 +105,6 @@
             color: #FFF8DC;
         }
 
-        /* Card Gold Foil Accent */
         .rank-card {
             background: linear-gradient(145deg, rgba(25, 18, 36, 0.9) 0%, rgba(12, 8, 18, 0.95) 100%);
             border: 1px solid rgba(212, 175, 55, 0.3);
@@ -141,20 +129,14 @@
             0% { transform: translateX(-100%) rotate(30deg); }
             20%, 100% { transform: translateX(100%) rotate(30deg); }
         }
-
-        /* Royal Banner Ornament */
-        .royal-banner {
-            background: linear-gradient(180deg, #bd1522 0%, #50080d 100%);
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
-        }
     </style>
 </head>
 <body class="gothic-bg min-h-screen relative pb-12">
 
-    <!-- Background Animated Particles Canvas -->
+    <!-- Canvas Background -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Side Torches & Gothic Pillars Ornamentation (Visual Framework) -->
+    <!-- Side Flames -->
     <div class="fixed top-0 left-0 w-8 h-full pointer-events-none z-10 flex flex-col justify-around items-center opacity-70">
         <div class="flame"></div>
         <div class="flame"></div>
@@ -169,9 +151,8 @@
     <!-- Main Container -->
     <div class="max-w-md mx-auto relative z-20 px-4 pt-6">
 
-        <!-- Top Header Banner -->
+        <!-- Banner Header -->
         <div class="text-center mb-6 relative">
-            <!-- Arabic Ornamental Arch Top -->
             <div class="w-full flex justify-center items-center gap-2 mb-2">
                 <div class="h-[2px] w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
                 <i class="fa-solid fa-chess-king text-gold-300 text-xl animate-pulse"></i>
@@ -182,7 +163,7 @@
                 مكافآت الفعالية
             </h1>
             <p class="text-xs text-gold-200/70 font-semibold tracking-widest uppercase">
-                ⚔️ حرب الأدمن - الشرق الأوسط ⚔️
+                ⚔️ حرب الأدمن - الشرق الأوسط ⚔️️
             </p>
         </div>
 
@@ -198,7 +179,7 @@
             </button>
         </div>
 
-        <!-- TAB CONTENT 1: ADMIN REWARDS (مكافآت الفعالية الادمن) -->
+        <!-- TAB CONTENT 1: ADMIN REWARDS -->
         <div id="tabAdmin" class="space-y-5">
 
             <!-- Top 1 Admin -->
@@ -234,7 +215,7 @@
                         <span class="font-semibold text-blue-200">15D * خلفية الغرفة</span>
                     </div>
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-gold-500/20">
-                        <i class="fa-solid fa-[#500] fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
+                        <i class="fa-solid fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
                         <span class="font-semibold text-gold-200">إطار مخصص</span>
                     </div>
                 </div>
@@ -254,7 +235,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 text-sm">
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg">
                         <i class="fa-solid fa-coins text-gold-400 text-lg w-6 text-center"></i>
                         <span class="font-semibold text-gray-200">560,000 كوينز</span>
@@ -292,7 +273,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 text-sm">
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg">
                         <i class="fa-solid fa-coins text-gold-400 text-lg w-6 text-center"></i>
                         <span class="font-semibold text-gray-200">420,000 كوينز</span>
@@ -313,40 +294,68 @@
             </div>
 
             <!-- Top 4 Admin -->
-            <div class="rank-card rounded-2xl p-4">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
+            <div class="rank-card rounded-2xl p-5 border border-purple-900/40">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-purple-900/30">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm font-bold text-gray-400 bg-gray-800/80 px-2.5 py-1 rounded-md">#4</span>
-                        <h3 class="font-bold text-lg text-gray-300">توب 4</h3>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-800 to-purple-950 flex items-center justify-center text-purple-200 font-black text-lg shadow-lg border border-purple-600/30">
+                            #4
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-purple-200">توب 4</h3>
+                            <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">$40</span>
+                        </div>
                     </div>
-                    <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">$40</span>
                 </div>
-                <div class="grid grid-cols-1 gap-2 text-xs">
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-coins text-gold-400 w-5"></i>280,000 كوينز</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-image text-blue-400 w-5"></i>10D * خلفية الغرفة</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-circle-user text-gold-400 w-5"></i>إطار</div>
+
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-coins text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gray-200">280,000 كوينز</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-image text-blue-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-blue-200">10D * خلفية الغرفة</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gold-300">إطار</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Top 5 Admin -->
-            <div class="rank-card rounded-2xl p-4">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
+            <div class="rank-card rounded-2xl p-5 border border-purple-900/40">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-purple-900/30">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm font-bold text-gray-400 bg-gray-800/80 px-2.5 py-1 rounded-md">#5</span>
-                        <h3 class="font-bold text-lg text-gray-300">توب 5</h3>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-800 to-purple-950 flex items-center justify-center text-purple-200 font-black text-lg shadow-lg border border-purple-600/30">
+                            #5
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-purple-200">توب 5</h3>
+                            <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">$20</span>
+                        </div>
                     </div>
-                    <span class="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">$20</span>
                 </div>
-                <div class="grid grid-cols-1 gap-2 text-xs">
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-coins text-gold-400 w-5"></i>140,000 كوينز</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-image text-blue-400 w-5"></i>10D * خلفية الغرفة</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-circle-user text-gold-400 w-5"></i>إطار</div>
+
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-coins text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gray-200">140,000 كوينز</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-image text-blue-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-blue-200">10D * خلفية الغرفة</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gold-300">إطار</span>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- TAB CONTENT 2: SUPPORTER REWARDS (مكافآت الفعالية الداعمين) -->
+        <!-- TAB CONTENT 2: SUPPORTER REWARDS -->
         <div id="tabSupporter" class="space-y-5 hidden">
 
             <!-- Top 1 Supporter -->
@@ -386,7 +395,7 @@
                     </div>
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-gold-500/20">
                         <i class="fa-solid fa-dragon text-emerald-400 text-lg w-6 text-center"></i>
-                        <span class="font-semibold text-emerald-200">الدخلة (تاثير الدخول)</span>
+                        <span class="font-semibold text-emerald-200">الدخلة</span>
                     </div>
                 </div>
             </div>
@@ -404,7 +413,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 text-sm">
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg">
                         <i class="fa-solid fa-gift text-red-400 text-lg w-6 text-center"></i>
                         <span class="font-semibold text-gray-200">هدية مخصصة</span>
@@ -445,7 +454,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 text-sm">
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
                     <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg">
                         <i class="fa-solid fa-id-card text-purple-400 text-lg w-6 text-center"></i>
                         <span class="font-semibold text-purple-200">الشخصي المتحرك</span>
@@ -470,32 +479,60 @@
             </div>
 
             <!-- Top 4 Supporter -->
-            <div class="rank-card rounded-2xl p-4">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
+            <div class="rank-card rounded-2xl p-5 border border-purple-900/40">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-purple-900/30">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm font-bold text-gray-400 bg-gray-800/80 px-2.5 py-1 rounded-md">#4</span>
-                        <h3 class="font-bold text-lg text-gray-300">توب 4</h3>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-800 to-purple-950 flex items-center justify-center text-purple-200 font-black text-lg shadow-lg border border-purple-600/30">
+                            #4
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-purple-200">توب 4</h3>
+                        </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 gap-2 text-xs">
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-circle-user text-gold-400 w-5"></i>إطار الصورة الشخصية</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-comment-dots text-purple-400 w-5"></i>فقاعة المحادثة</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-dragon text-emerald-400 w-5"></i>الدخلة</div>
+
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gold-300">إطار الصورة الشخصية</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-comment-dots text-purple-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-purple-200">فقاعة المحادثة</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-dragon text-emerald-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-emerald-200">الدخلة</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Top 5 Supporter -->
-            <div class="rank-card rounded-2xl p-4">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
+            <div class="rank-card rounded-2xl p-5 border border-purple-900/40">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-purple-900/30">
                     <div class="flex items-center gap-3">
-                        <span class="text-sm font-bold text-gray-400 bg-gray-800/80 px-2.5 py-1 rounded-md">#5</span>
-                        <h3 class="font-bold text-lg text-gray-300">توب 5</h3>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-800 to-purple-950 flex items-center justify-center text-purple-200 font-black text-lg shadow-lg border border-purple-600/30">
+                            #5
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl text-purple-200">توب 5</h3>
+                        </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 gap-2 text-xs">
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-circle-user text-gold-400 w-5"></i>إطار الصورة الشخصية</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-comment-dots text-purple-400 w-5"></i>فقاعة المحادثة</div>
-                    <div class="flex items-center gap-2 text-gray-300"><i class="fa-solid fa-dragon text-emerald-400 w-5"></i>الدخلة</div>
+
+                <div class="grid grid-cols-1 gap-2.5 text-sm">
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-circle-user text-gold-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-gold-300">إطار الصورة الشخصية</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-comment-dots text-purple-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-purple-200">فقاعة المحادثة</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gothic-bg/60 p-2.5 rounded-lg border border-purple-900/20">
+                        <i class="fa-solid fa-dragon text-emerald-400 text-lg w-6 text-center"></i>
+                        <span class="font-semibold text-emerald-200">الدخلة</span>
+                    </div>
                 </div>
             </div>
 
@@ -503,7 +540,7 @@
 
     </div>
 
-    <!-- JS Tab Switch Logic & Particle Effects -->
+    <!-- Tab Script & Particle Animation -->
     <script>
         function switchTab(type) {
             const adminTab = document.getElementById('tabAdmin');
@@ -528,7 +565,6 @@
             }
         }
 
-        // Particle Canvas Animation Script
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
 
