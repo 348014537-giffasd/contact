@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>حرب الأدمن - مكافآت الفعالية</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Arabic Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Changa:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Changa', 'Cairo', sans-serif;
+      background-color: #030204;
+      color: #f3e5ab;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* Ambient Gold Embers Canvas Overlay */
+    #embers-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Gothic Castle Background Layer */
+    .bg-gothic-castle {
+      background: 
+        radial-gradient(circle at 50% 12%, rgba(245, 158, 11, 0.22) 0%, transparent 65%),
+        radial-gradient(circle at 50% 100%, rgba(3, 2, 4, 0.98) 0%, rgba(3, 2, 4, 0.95) 100%),
+        linear-gradient(180deg, rgba(8, 4, 10, 0.92) 0%, rgba(3, 2, 4, 0.98) 100%),
+        url('https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+    }
+
+    /* Metallic Gold Text Styling */
+    .gold-metallic-text {
+      background: linear-gradient(180deg, #ffffff 0%, #fff4b8 20%, #ffd700 50%, #b8860b 80%, #5e4102 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 2px 6px rgba(0,0,0,0.95));
+    }
+
+    .silver-metallic-text {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 25%, #cbd5e1 55%, #64748b 85%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.9));
+    }
+
+    .bronze-metallic-text {
+      background: linear-gradient(180deg, #ffffff 0%, #ffedd5 25%, #fb923c 55%, #c2410c 85%, #7c2d12 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.9));
+    }
+
+    /* Heraldic Banner Flaps on Left/Right */
+    .heraldic-banner-left {
+      position: absolute;
+      top: 15px;
+      left: -2px;
+      width: 28px;
+      height: 120px;
+      background: linear-gradient(180deg, #b91c1c 0%, #7f1d1d 70%, #450a0a 100%);
+      border: 1px solid #fef08a;
+      border-top: none;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.9);
+      z-index: 25;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    .heraldic-banner-right {
+      position: absolute;
+      top: 15px;
+      right: -2px;
+      width: 28px;
+      height: 120px;
+      background: linear-gradient(180deg, #1e3a8a 0%, #1e1b4b 70%, #0f172a 100%);
+      border: 1px solid #fef08a;
+      border-top: none;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.9);
+      z-index: 25;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    /* Medieval Gothic Pillars Frame */
+    .stone-pillar {
+      background: linear-gradient(90deg, #09060b 0%, #1c1921 40%, #2a2632 50%, #17141d 80%, #070509 100%);
+      border-left: 1px solid #4a3b2c;
+      border-right: 1px solid #4a3b2c;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.9);
+    }
+
+    /* Metallic Bevel Cards */
+    .card-top1 {
+      position: relative;
+      background: linear-gradient(145deg, rgba(48, 28, 8, 0.96) 0%, rgba(18, 9, 14, 0.98) 100%);
+      border: 2px solid #ffd700;
+      box-shadow: 
+        0 0 35px rgba(255, 215, 0, 0.35),
+        inset 0 0 20px rgba(255, 193, 7, 0.25),
+        0 12px 30px rgba(0, 0, 0, 0.95);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    }
+
+    .card-top2 {
+      background: linear-gradient(145deg, rgba(22, 28, 38, 0.96) 0%, rgba(10, 12, 18, 0.98) 100%);
+      border: 2px solid #94a3b8;
+      box-shadow: 0 0 22px rgba(148, 163, 184, 0.25), inset 0 0 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .card-top3 {
+      background: linear-gradient(145deg, rgba(35, 20, 12, 0.96) 0%, rgba(15, 8, 8, 0.98) 100%);
+      border: 2px solid #ea580c;
+      box-shadow: 0 0 22px rgba(234, 88, 12, 0.25), inset 0 0 12px rgba(253, 186, 116, 0.1);
+    }
+
+    .card-standard {
+      background: linear-gradient(180deg, rgba(22, 16, 22, 0.92) 0%, rgba(10, 8, 12, 0.96) 100%);
+      border: 1px solid #785d32;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.85);
+    }
+
+    /* Filigree Corner Accents */
+    .corner-filigree {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: #ffd700;
+      pointer-events: none;
+    }
+    .corner-tl { top: 3px; right: 3px; border-top: 2px solid; border-right: 2px solid; }
+    .corner-tr { top: 3px; left: 3px; border-top: 2px solid; border-left: 2px solid; }
+    .corner-bl { bottom: 3px; right: 3px; border-bottom: 2px solid; border-right: 2px solid; }
+    .corner-br { bottom: 3px; left: 3px; border-bottom: 2px solid; border-left: 2px solid; }
+
+    /* Shimmer Sweep Effect */
+    @keyframes shimmerSweep {
+      0% { transform: translateX(-150%) rotate(25deg); }
+      100% { transform: translateX(180%) rotate(25deg); }
+    }
+    .shimmer-sweeper {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-sweeper::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: linear-gradient(
+        60deg,
+        transparent 42%,
+        rgba(255, 240, 160, 0.22) 50%,
+        transparent 58%
+      );
+      transform: rotate(25deg);
+      animation: shimmerSweep 4s infinite linear;
+      pointer-events: none;
+    }
+
+    /* Torch Flame Animation */
+    @keyframes torchFlicker {
+      0%, 100% { opacity: 0.9; transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 12px #f97316); }
+      50% { opacity: 1; transform: scale(1.1) rotate(1deg); filter: drop-shadow(0 0 22px #eab308); }
+    }
+    .torch-flame {
+      animation: torchFlicker 1.6s infinite ease-in-out;
+    }
+
+    /* Tab Switcher Navigation Styling */
+    .tab-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      position: relative;
+    }
+    .tab-active {
+      background: linear-gradient(180deg, #f59e0b 0%, #b45309 60%, #451a03 100%);
+      color: #ffffff;
+      box-shadow: 0 -4px 22px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      border: 1.5px solid #fef08a;
+      border-bottom: 3px solid #fef08a;
+    }
+    .tab-inactive {
+      background: rgba(18, 10, 16, 0.9);
+      color: #a1a1aa;
+      border: 1px solid #451a03;
+      border-bottom: 2px solid #271302;
+    }
+
+    /* Item Badge Cards */
+    .item-card {
+      background: linear-gradient(135deg, rgba(38, 22, 10, 0.9) 0%, rgba(14, 7, 9, 0.95) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .item-card:hover {
+      border-color: rgba(253, 224, 71, 0.85);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gothic-castle flex justify-center items-start py-3 px-1 sm:px-4 relative">
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="embers-canvas"></canvas>
+
+  <main class="w-full max-w-[460px] z-10 flex flex-col items-center pb-10 relative">
+
+    <!-- SIDE GOTHIC PILLARS & ROYAL HERALDIC BANNERS -->
+    <div class="stone-pillar absolute left-0 top-0 bottom-0 w-3 pointer-events-none rounded-l z-20"></div>
+    <div class="stone-pillar absolute right-0 top-0 bottom-0 w-3 pointer-events-none rounded-r z-20"></div>
+
+    <div class="heraldic-banner-left">
+      <i class="fa-solid fa-shield-cat text-amber-300 text-xs"></i>
+      <div class="w-1 h-8 bg-amber-400/40 rounded my-2"></div>
+      <i class="fa-solid fa-crown text-amber-200 text-[10px]"></i>
+    </div>
+
+    <div class="heraldic-banner-right">
+      <i class="fa-solid fa-dragon text-amber-300 text-xs"></i>
+      <div class="w-1 h-8 bg-amber-400/40 rounded my-2"></div>
+      <i class="fa-solid fa-crown text-amber-200 text-[10px]"></i>
+    </div>
+
+    <!-- HEADER TITLE BANNER -->
+    <header class="w-full text-center relative mb-4 px-4">
+      
+      <!-- Side Wall Torches -->
+      <div class="absolute top-2 right-6 z-30 flex flex-col items-center pointer-events-none">
+        <i class="fa-solid fa-fire torch-flame text-amber-500 text-xl"></i>
+        <div class="w-1.5 h-6 bg-gradient-to-b from-amber-900 to-zinc-950 rounded-b"></div>
+      </div>
+      <div class="absolute top-2 left-6 z-30 flex flex-col items-center pointer-events-none">
+        <i class="fa-solid fa-fire torch-flame text-amber-500 text-xl"></i>
+        <div class="w-1.5 h-6 bg-gradient-to-b from-amber-900 to-zinc-950 rounded-b"></div>
+      </div>
+
+      <!-- Crown & Sword Shield Crest -->
+      <div class="relative z-20 flex justify-center items-center -mb-5">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-b from-yellow-100 via-amber-400 to-amber-950 p-[2px] shadow-[0_0_25px_rgba(255,215,0,0.85)] flex items-center justify-center">
+          <div class="w-full h-full bg-zinc-950 rounded-full flex items-center justify-center border border-amber-500/50">
+            <i class="fa-solid fa-crown text-2xl text-amber-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.9)]"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shield Title Box -->
+      <div class="pt-7 pb-5 px-4 text-center relative w-full bg-black/75 border border-amber-500/50 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.9)]">
+        <div class="corner-filigree corner-tl"></div>
+        <div class="corner-filigree corner-tr"></div>
+        <div class="corner-filigree corner-bl"></div>
+        <div class="corner-filigree corner-br"></div>
+
+        <h1 class="text-2xl sm:text-3xl font-black gold-metallic-text tracking-wide mt-1">
+          حرب الادمن
+        </h1>
+        <p class="text-[11px] font-bold text-amber-300/90 tracking-wider mt-0.5">مكافآت الفعالية الحصرية</p>
+      </div>
+    </header>
+
+    <!-- TAB SWITCHER -->
+    <nav class="w-full flex justify-between items-center gap-2 mb-4 px-4">
+      <button 
+        id="tab-admin" 
+        onclick="switchTab('admin')" 
+        class="tab-btn tab-active flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5">
+        <i class="fa-solid fa-user-shield text-amber-200"></i>
+        <span>مكافآت الفعالية الادمن</span>
+      </button>
+
+      <button 
+        id="tab-supporters" 
+        onclick="switchTab('supporters')" 
+        class="tab-btn tab-inactive flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5">
+        <i class="fa-solid fa-gem text-amber-400"></i>
+        <span>مكافآت الفعالية الداعمين</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: ADMIN REWARDS CONTENT -->
+    <section id="content-admin" class="w-full space-y-3.5 px-4">
+
+      <!-- TOP 1 ADMIN -->
+      <div class="card-top1 shimmer-sweeper rounded-xl p-3.5 relative">
+        <div class="corner-filigree corner-tl"></div>
+        <div class="corner-filigree corner-tr"></div>
+        <div class="corner-filigree corner-bl"></div>
+        <div class="corner-filigree corner-br"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-amber-500/40 pb-2.5 mb-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-b from-amber-700 via-amber-900 to-black border border-amber-400 flex items-center justify-center shadow-[0_0_12px_rgba(255,215,0,0.6)]">
+              <i class="fa-solid fa-trophy text-amber-300 text-lg"></i>
+            </div>
+            <div>
+              <span class="text-lg font-black text-amber-100 block leading-none">توب 1</span>
+              <span class="text-[10px] text-amber-400/80 font-bold">المركز الأول</span>
+            </div>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-xl font-black gold-metallic-text flex items-center gap-1">
+              <span>700,000</span>
+              <i class="fa-solid fa-coins text-amber-400 text-base"></i>
+            </div>
+            <span class="bg-emerald-950/90 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/50 font-mono font-bold mt-0.5">($100)</span>
+          </div>
+        </div>
+
+        <!-- Reward Grid Badges -->
+        <div class="grid grid-cols-3 gap-2">
+          
+          <div class="item-card rounded-lg p-2 flex flex-col items-center text-center">
+            <div class="w-8 h-8 rounded-full bg-amber-950/80 border border-amber-500/60 flex items-center justify-center mb-1">
+              <i class="fa-solid fa-crown text-amber-300 text-xs"></i>
+            </div>
+            <span class="text-[11px] font-extrabold text-amber-200">VIP5 * 15D</span>
+          </div>
+
+          <div class="item-card rounded-lg p-2 flex flex-col items-center text-center">
+            <div class="w-8 h-8 rounded-full bg-amber-950/80 border border-amber-500/60 flex items-center justify-center mb-1">
+              <i class="fa-solid fa-image text-amber-300 text-xs"></i>
+            </div>
+            <span class="text-[11px] font-extrabold text-amber-200">15D * خلفية الغرفة</span>
+          </div>
+
+          <div class="item-card rounded-lg p-2 flex flex-col items-center text-center">
+            <div class="w-8 h-8 rounded-full bg-amber-950/80 border border-amber-500/60 flex items-center justify-center mb-1">
+              <i class="fa-solid fa-circle-user text-amber-300 text-xs"></i>
+            </div>
+            <span class="text-[11px] font-extrabold text-amber-200">إطار مخصص</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TOP 2 ADMIN -->
+      <div class="card-top2 rounded-xl p-3 relative">
+        <div class="corner-filigree corner-tl" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-tr" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-bl" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-br" style="border-color:#cbd5e1;"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-slate-700/60 pb-2 mb-2.5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-b from-slate-700 to-black border border-slate-400 flex items-center justify-center shadow">
+              <i class="fa-solid fa-shield-halved text-slate-200 text-base"></i>
+            </div>
+            <span class="text-base font-black text-slate-100">توب 2</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-lg font-black silver-metallic-text">
+              560,000 <span class="text-xs font-bold text-slate-300">كوينز</span>
+            </div>
+            <span class="bg-emerald-950/80 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/40 font-mono font-bold">($80)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 text-center">
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-shield-cat text-slate-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-bold text-slate-200">VIP4 * 15D</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-image text-slate-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-bold text-slate-200">15D * خلفية الغرفة</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-circle-user text-slate-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-bold text-slate-200">إطار مخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 3 ADMIN -->
+      <div class="card-top3 rounded-xl p-3 relative">
+        <div class="corner-filigree corner-tl" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-tr" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-bl" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-br" style="border-color:#f97316;"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-orange-900/60 pb-2 mb-2.5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-b from-orange-900 to-black border border-orange-500 flex items-center justify-center shadow">
+              <i class="fa-solid fa-medal text-orange-300 text-base"></i>
+            </div>
+            <span class="text-base font-black text-orange-100">توب 3</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-lg font-black bronze-metallic-text">
+              420,000 <span class="text-xs font-bold text-orange-300">كوينز</span>
+            </div>
+            <span class="bg-emerald-950/80 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/40 font-mono font-bold">($60)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-center">
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-image text-orange-400 text-xs"></i>
+            <span class="text-[11px] font-bold text-orange-200">15D * خلفية الغرفة</span>
+          </div>
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-circle-user text-orange-400 text-xs"></i>
+            <span class="text-[11px] font-bold text-orange-200">إطار مخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 4 ADMIN -->
+      <div class="card-standard rounded-lg p-2.5 relative">
+        <div class="flex items-center justify-between gap-2 border-b border-amber-900/30 pb-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded bg-zinc-950 border border-amber-800/60 flex items-center justify-center text-xs font-bold text-amber-300">4</span>
+            <span class="text-sm font-bold text-amber-200">توب 4</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-base font-extrabold text-amber-300">
+              280,000 <span class="text-[10px] text-amber-400/80">كوينز</span>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold">($40)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-center">
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-image text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">10D * خلفية الغرفة</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-circle-user text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">إطار</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 5 ADMIN -->
+      <div class="card-standard rounded-lg p-2.5 relative">
+        <div class="flex items-center justify-between gap-2 border-b border-amber-900/30 pb-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded bg-zinc-950 border border-amber-800/60 flex items-center justify-center text-xs font-bold text-amber-300">5</span>
+            <span class="text-sm font-bold text-amber-200">توب 5</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-base font-extrabold text-amber-300">
+              140,000 <span class="text-[10px] text-amber-400/80">كوينز</span>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold">($20)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-center">
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-image text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">10D * خلفية الغرفة</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-circle-user text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">إطار</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB 2: SUPPORTER REWARDS CONTENT -->
+    <section id="content-supporters" class="w-full space-y-3.5 px-4 hidden">
+
+      <!-- TOP 1 SUPPORTER -->
+      <div class="card-top1 shimmer-sweeper rounded-xl p-3.5 relative">
+        <div class="corner-filigree corner-tl"></div>
+        <div class="corner-filigree corner-tr"></div>
+        <div class="corner-filigree corner-bl"></div>
+        <div class="corner-filigree corner-br"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-amber-500/40 pb-2.5 mb-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-b from-amber-700 via-amber-900 to-black border border-amber-400 flex items-center justify-center shadow-[0_0_12px_rgba(255,215,0,0.6)]">
+              <i class="fa-solid fa-crown text-amber-300 text-lg"></i>
+            </div>
+            <div>
+              <span class="text-lg font-black text-amber-100 block leading-none">توب 1</span>
+              <span class="text-[10px] text-amber-400/80 font-bold">الداعم الأول</span>
+            </div>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-xl font-black gold-metallic-text flex items-center gap-1">
+              <span>560,000</span>
+              <i class="fa-solid fa-coins text-amber-400 text-base"></i>
+            </div>
+            <span class="bg-emerald-950/90 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/50 font-mono font-bold mt-0.5">($80)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center">
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-gift text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">هدية مخصصة</span>
+          </div>
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-film text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">الملف الشخصي المتحرك</span>
+          </div>
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-hashtag text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">ID مخصص</span>
+          </div>
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-award text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">وسام</span>
+          </div>
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-chess-knight text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">الدخلة</span>
+          </div>
+          <div class="item-card rounded-lg p-2 flex flex-col items-center">
+            <i class="fa-solid fa-circle-user text-amber-300 text-xs mb-1"></i>
+            <span class="text-[11px] font-extrabold text-amber-200">إطار مخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 2 SUPPORTER -->
+      <div class="card-top2 rounded-xl p-3 relative">
+        <div class="corner-filigree corner-tl" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-tr" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-bl" style="border-color:#cbd5e1;"></div>
+        <div class="corner-filigree corner-br" style="border-color:#cbd5e1;"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-slate-700/60 pb-2 mb-2.5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-b from-slate-700 to-black border border-slate-400 flex items-center justify-center">
+              <i class="fa-solid fa-shield-halved text-slate-200 text-base"></i>
+            </div>
+            <span class="text-base font-black text-slate-100">توب 2</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-lg font-black silver-metallic-text">
+              420,000 <span class="text-xs font-bold text-slate-300">كوينز</span>
+            </div>
+            <span class="bg-emerald-950/80 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/40 font-mono font-bold">($60)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center">
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-slate-200 block">هدية مخصصة</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-slate-200 block">الملف الشخصي المتحرك</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[10px] font-bold text-slate-200 block">ID مميز (AABBC) * 15D</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-slate-200 block">وسام</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-slate-200 block">الدخلة</span>
+          </div>
+          <div class="bg-slate-900/90 border border-slate-700 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-slate-200 block">إطار مخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 3 SUPPORTER -->
+      <div class="card-top3 rounded-xl p-3 relative">
+        <div class="corner-filigree corner-tl" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-tr" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-bl" style="border-color:#f97316;"></div>
+        <div class="corner-filigree corner-br" style="border-color:#f97316;"></div>
+
+        <div class="flex items-center justify-between gap-2 border-b border-orange-900/60 pb-2 mb-2.5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-b from-orange-900 to-black border border-orange-500 flex items-center justify-center">
+              <i class="fa-solid fa-medal text-orange-300 text-base"></i>
+            </div>
+            <span class="text-base font-black text-orange-100">توب 3</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-lg font-black bronze-metallic-text">
+              210,000 <span class="text-xs font-bold text-orange-300">كوينز</span>
+            </div>
+            <span class="bg-emerald-950/80 px-2 py-0.5 rounded text-[10px] text-emerald-400 border border-emerald-500/40 font-mono font-bold">($30)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center">
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-orange-200 block">الملف الشخصي المتحرك</span>
+          </div>
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2">
+            <span class="text-[10px] font-bold text-orange-200 block">ID مميز (AABBCC) * 15D</span>
+          </div>
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-orange-200 block">وسام</span>
+          </div>
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2">
+            <span class="text-[11px] font-bold text-orange-200 block">الدخلة</span>
+          </div>
+          <div class="bg-amber-950/70 border border-orange-800/60 rounded-lg p-2 col-span-2 sm:col-span-2">
+            <span class="text-[11px] font-bold text-orange-200 block">إطار مخصص</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 4 SUPPORTER -->
+      <div class="card-standard rounded-lg p-2.5 relative">
+        <div class="flex items-center justify-between gap-2 border-b border-amber-900/30 pb-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded bg-zinc-950 border border-amber-800/60 flex items-center justify-center text-xs font-bold text-amber-300">4</span>
+            <span class="text-sm font-bold text-amber-200">توب 4</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-base font-extrabold text-amber-300">
+              140,000 <span class="text-[10px] text-amber-400/80">كوينز</span>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold">($20)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-1.5 text-center">
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-circle-user text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">إطار</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-comment-dots text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">فقاعة كلام</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-chess-knight text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">الدخلة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP 5 SUPPORTER -->
+      <div class="card-standard rounded-lg p-2.5 relative">
+        <div class="flex items-center justify-between gap-2 border-b border-amber-900/30 pb-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded bg-zinc-950 border border-amber-800/60 flex items-center justify-center text-xs font-bold text-amber-300">5</span>
+            <span class="text-sm font-bold text-amber-200">توب 5</span>
+          </div>
+
+          <div class="text-left flex flex-col items-end">
+            <div class="text-base font-extrabold text-amber-300">
+              70,000 <span class="text-[10px] text-amber-400/80">كوينز</span>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-mono font-bold">($10)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-1.5 text-center">
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-circle-user text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">إطار</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-comment-dots text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">فقاعة كلام</span>
+          </div>
+          <div class="bg-black/60 border border-amber-900/40 rounded p-1.5 flex items-center justify-center gap-1">
+            <i class="fa-solid fa-chess-knight text-amber-400/80 text-xs"></i>
+            <span class="text-[11px] font-semibold text-amber-300/90">الدخلة</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    /* Tab Switcher Logic */
+    function switchTab(type) {
+      const tabAdmin = document.getElementById('tab-admin');
+      const tabSupporters = document.getElementById('tab-supporters');
+      const contentAdmin = document.getElementById('content-admin');
+      const contentSupporters = document.getElementById('content-supporters');
+
+      if (type === 'admin') {
+        tabAdmin.className = "tab-btn tab-active flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5";
+        tabSupporters.className = "tab-btn tab-inactive flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5";
+        contentAdmin.classList.remove('hidden');
+        contentSupporters.classList.add('hidden');
+      } else {
+        tabSupporters.className = "tab-btn tab-active flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5";
+        tabAdmin.className = "tab-btn tab-inactive flex-1 py-3 px-2 text-center text-xs sm:text-sm font-black flex items-center justify-center gap-1.5";
+        contentSupporters.classList.remove('hidden');
+        contentAdmin.classList.add('hidden');
+      }
+    }
+
+    /* Ambient Gold Dust Canvas Animation */
+    window.addEventListener('load', () => {
+      const canvas = document.getElementById('embers-canvas');
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particles = [];
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 0.5,
+          color: `rgba(${220 + Math.floor(Math.random() * 35)}, ${160 + Math.floor(Math.random() * 60)}, ${20 + Math.floor(Math.random() * 40)}, ${Math.random() * 0.7 + 0.3})`,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: -Math.random() * 0.8 - 0.3,
+          pulse: Math.random() * Math.PI
+        });
+      }
+
+      function animateEmbers() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.pulse += 0.03;
+
+          if (p.y < 0) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+          if (p.x < 0 || p.x > width) {
+            p.speedX *= -1;
+          }
+
+          const opacity = (Math.sin(p.pulse) + 1) / 2 * 0.6 + 0.3;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = opacity;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = '#ffd700';
+          ctx.fill();
+        });
+
+        requestAnimationFrame(animateEmbers);
+      }
+
+      animateEmbers();
+    });
+  </script>
+</body>
+</html>
